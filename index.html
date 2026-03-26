@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CAFE MONOBOX</title>
+<link rel="stylesheet" href="style.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+<header>☕ <span class="mono-red">MONOBOX</span></header>
+
+<div class="navbar" id="navbar">
+  <button onclick="showTab('home')">Home</button>
+  <button onclick="showTab('menu')">Menu</button>
+  <button onclick="showTab('pesanan')">Pesanan</button>
+  <button onclick="showTab('riwayat')">Riwayat</button>
+  <button onclick="showTab('admin')">Admin</button>
+  <button onclick="logout()">Logout</button>
+</div>
+
+<div id="loginPage" class="tab-content login-page">
+  <h2>Login</h2>
+  <input id="inputNama" placeholder="Nama">
+  <button onclick="loginUser()">Masuk</button>
+</div>
+
+<div id="home" class="tab-content"><h2 id="welcomeText"></h2></div>
+
+<div id="menu" class="tab-content">
+  <div class="menu-container">
+    <div class="menu">
+      <img src="https://images.unsplash.com/photo-1601924578851-f498c2f76cd7">
+      <p>Kopi Susu - Rp15000</p>
+      <button onclick="tambah('Kopi Susu',15000)">Pesan</button>
+    </div>
+    <div class="menu">
+      <img src="https://images.unsplash.com/photo-1617196036307-55b45bb8ff10">
+      <p>Nasi Lalapan - Rp20000</p>
+      <button onclick="tambah('Nasi Lalapan',20000)">Pesan</button>
+    </div>
+  </div>
+</div>
+
+<div id="pesanan" class="tab-content">
+  <ul id="list"></ul>
+  <p>Total: Rp <span id="total">0</span></p>
+  <button onclick="resetPesanan()">Reset</button>
+  <button onclick="bayarOnline()">Bayar</button>
+</div>
+
+<div id="riwayat" class="tab-content"><h2>Riwayat</h2><div id="historyList"></div></div>
+
+<div id="admin" class="tab-content">
+  <h2>📊 Dashboard Admin</h2>
+  <select id="filterTanggal" onchange="tampilAdmin()">
+    <option value="semua">Semua</option>
+    <option value="hari">Hari Ini</option>
+    <option value="minggu">7 Hari</option>
+  </select>
+  <p>Total Pendapatan: <b id="totalUang">Rp 0</b></p>
+  <p>Jumlah Transaksi: <b id="jumlahTransaksi">0</b></p>
+  <p>Rata-rata: <b id="rataRata">Rp 0</b></p>
+  <canvas id="grafikPenjualan" height="100"></canvas>
+  <h3>🔥 Menu Terlaris</h3>
+  <div id="menuTerlaris"></div>
+  <button onclick="resetData()">Reset Data</button>
+</div>
+
+<div id="popupBayar" class="popup">
+  <div class="box">
+    <h3>Pembayaran</h3>
+    <p>Total: <span id="totalBayar"></span></p>
+    <img id="qrBayar" alt="QR Code" style="width:180px;height:180px;">
+    <button onclick="prosesBayar()">Bayar Selesai</button>
+    <button onclick="tutupPopup()">Batal</button>
+  </div>
+</div>
+
+<div id="popupStruk" class="popup">
+  <div class="box">
+    <h3>🧾 Struk Pembayaran</h3>
+    <div id="isiStruk"></div>
+    <button onclick="printStruk()">🖨️ Print</button>
+    <button onclick="downloadStruk()">📥 Download</button>
+    <button onclick="tutupStruk()">Tutup</button>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
